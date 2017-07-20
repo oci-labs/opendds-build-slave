@@ -2,7 +2,7 @@
 FROM debian
 
 RUN apt-get update
-RUN apt-get -y install libfindbin-libs-perl make g++ libxerces-c-dev
+RUN apt-get -y install libfindbin-libs-perl make g++ libxerces-c-dev git libqt4-dev-bin libqt4-dev
 
 COPY autobuild /opt/autobuild
 COPY MPC /opt/MPC
@@ -28,6 +28,3 @@ ENV QT4_INCDIR=/usr/include/qt4
 COPY config.xml /opt/config.xml
 CMD /opt/autobuild/autobuild.pl /opt/config.xml
 WORKDIR /opt/workspace
-RUN apt-get -y install git
-RUN apt-get -y install libqt4-dev-bin
-RUN apt-get -y install libqt4-dev
