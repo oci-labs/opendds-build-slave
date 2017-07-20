@@ -1,0 +1,23 @@
+<autobuild>
+<configuration>
+<variable name="log_file" value="autobuild_output.log"/>
+<variable name="log_root" value="/opt/workspace"/>
+<variable name="project_root" value="/opt/OpenDDS"/>
+<variable name="root" value="/opt"/>
+<variable name="junit_xml_output" value="Tests"/>
+</configuration>
+<command name="log" options="on"/>
+<command name="git" options="dir=OpenDDS log -1"/>
+<command name="file_manipulation" options="type=create file=OpenDDS/user_macros.GNU output='boost=1\nqt4=1\n'"/>
+<command name="print_os_version"/>
+<command name="print_env_vars"/>
+<command name="print_ace_config"/>
+<command name="print_make_version"/>
+<command name="check_compiler" options="gcc"/>
+<command name="print_autobuild_config"/>
+<command name="generate_workspace" options="-type gnuace DDS.mwc -features boost=1,qt4=1"/>
+<command name="make" options="-k"/>
+<command name="auto_run_tests" options="dir=. -Config RTPS"/>
+<command name="log" options="off"/>
+<command name="process_logs" options="copy=1 prettify=1"/>
+</autobuild>
