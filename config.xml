@@ -19,5 +19,5 @@
 <command name="make" options="-k"/>
 <command name="auto_run_tests" options="dir=. -Config RTPS"/>
 <command name="log" options="off"/>
-<command name="process_logs" options="copy=1 prettify=1"/>
+<command name="process_logs" options="prettify=1"/>
 </autobuild>
