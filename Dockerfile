@@ -1,17 +1,16 @@
 # Image for build GitHub Pull Requests for OpenDDS
 FROM debian
 
-RUN apt-get update
-RUN apt-get -y install libfindbin-libs-perl make g++ libxerces-c-dev git libqt4-dev-bin libqt4-dev
+RUN apt-get update && apt-get -y --fix-missing install libfindbin-libs-perl make g++ libxerces-c-dev git libqt4-dev-bin libqt4-dev
 
 COPY autobuild /opt/autobuild
 COPY MPC /opt/MPC
-COPY ATCD /opt/ATCD
+COPY ACE_TAO /opt/ACE_TAO
 
 ENV MPC_ROOT /opt/MPC
-ENV ACE_ROOT /opt/ATCD/ACE
-ENV TAO_ROOT /opt/ATCD/TAO
-ENV LD_LIBRARY_PATH /opt/ATCD/ACE/lib
+ENV ACE_ROOT /opt/ACE_TAO/ACE
+ENV TAO_ROOT /opt/ACE_TAO/TAO
+ENV LD_LIBRARY_PATH /opt/ACE_TAO/ACE/lib
 
 COPY config.h ${ACE_ROOT}/ace/config.h
 COPY platform_macros.GNU ${ACE_ROOT}/include/makeinclude/platform_macros.GNU
