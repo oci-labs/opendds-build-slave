@@ -15,4 +15,6 @@ To build the image:
 To build OpenDDS with the image:
 
     $ git clone --depth 1 https://github.com/objectcomputing/OpenDDS.git
+    $ mkdir -p workspace
+    $ (edit workspace/config.xml)
     $ docker run --rm -u "$UID" -v "$PWD/workspace:/opt/workspace" -v "$PWD/OpenDDS:/opt/OpenDDS" opendds-build-slave
