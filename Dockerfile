@@ -24,6 +24,5 @@ ENV LD_LIBRARY_PATH ${ACE_ROOT}/lib:${DDS_ROOT}/lib
 ENV QTDIR /usr
 ENV QT4_INCDIR=/usr/include/qt4
 
-COPY config.xml /opt/config.xml
-CMD /opt/autobuild/autobuild.pl /opt/config.xml
+CMD /opt/autobuild/autobuild.pl /opt/workspace/config.xml
 WORKDIR /opt/workspace
