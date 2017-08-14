@@ -1,7 +1,7 @@
 # Image for build GitHub Pull Requests for OpenDDS
 FROM debian
 
-RUN apt-get update && apt-get -y --fix-missing install libfindbin-libs-perl make g++ libxerces-c-dev git libqt4-dev-bin libqt4-dev
+RUN apt-get update && apt-get -y --fix-missing install libfindbin-libs-perl make g++ libxerces-c-dev git libqt4-dev-bin libqt4-dev openjdk-8-jdk-headless wireshark-dev libwireshark-dev
 
 COPY autobuild /opt/autobuild
 COPY MPC /opt/MPC
