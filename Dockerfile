@@ -1,28 +1,52 @@
 # Image for build GitHub Pull Requests for OpenDDS
 FROM debian
 
-RUN apt-get update && apt-get -y --fix-missing install libfindbin-libs-perl make g++ libxerces-c-dev git libqt4-dev-bin libqt4-dev openjdk-8-jdk-headless wireshark-dev libwireshark-dev
+RUN apt-get update && apt-get -y --fix-missing install \
+    bison \
+    bzip2 \
+    curl \
+    flex \
+    g++ \
+    git \
+    libfindbin-libs-perl \
+    libgtk-3-dev \
+    libpcap-dev \
+    libqt4-dev \
+    libqt4-dev-bin \
+    libxerces-c-dev \
+    make \
+    openjdk-8-jdk-headless \
+    pkg-config \
+    python
+
+RUN curl https://1.na.dl.wireshark.org/src/all-versions/wireshark-1.12.13.tar.bz2 -o /opt/wireshark-1.12.13.tar.bz2 && \
+    cd /opt && \
+    tar xjf wireshark-1.12.13.tar.bz2 && \
+    cd wireshark-1.12.13 && \
+    ./configure && \
+    make
+
+ENV WIRESHARK_SRC=/opt/wireshark-1.12.13 \
+    MPC_ROOT=/opt/MPC \
+    ACE_ROOT=/opt/ACE_TAO/ACE \
+    TAO_ROOT=/opt/ACE_TAO/TAO \
+    LD_LIBRARY_PATH=/opt/ACE_TAO/ACE/lib \
+    DDS_ROOT=/opt/OpenDDS \
+    LD_LIBRARY_PATH=${ACE_ROOT}/lib:${DDS_ROOT}/lib \
+    QTDIR=/usr \
+    QT4_INCDIR=/usr/include/qt4
 
 COPY autobuild /opt/autobuild
-COPY MPC /opt/MPC
+COPY MPC ${MPC_ROOT}
 COPY ACE_TAO /opt/ACE_TAO
-
-ENV MPC_ROOT /opt/MPC
-ENV ACE_ROOT /opt/ACE_TAO/ACE
-ENV TAO_ROOT /opt/ACE_TAO/TAO
-ENV LD_LIBRARY_PATH /opt/ACE_TAO/ACE/lib
-
 COPY config.h ${ACE_ROOT}/ace/config.h
 COPY platform_macros.GNU ${ACE_ROOT}/include/makeinclude/platform_macros.GNU
 COPY default.features ${ACE_ROOT}/bin/MakeProjectCreator/config/default.features
 
-RUN ${ACE_ROOT}/bin/mwc.pl -type gnuace ${TAO_ROOT}/TAO_ACE.mwc
-RUN cd ${TAO_ROOT}; make -s depend && make
+RUN ${ACE_ROOT}/bin/mwc.pl -type gnuace ${TAO_ROOT}/TAO_ACE.mwc && \
+    cd ${TAO_ROOT} && \
+    make -s depend && \
+    make
 
-ENV DDS_ROOT /opt/OpenDDS
-ENV LD_LIBRARY_PATH ${ACE_ROOT}/lib:${DDS_ROOT}/lib
-ENV QTDIR /usr
-ENV QT4_INCDIR=/usr/include/qt4
-
-CMD /opt/autobuild/autobuild.pl /opt/workspace/config.xml
 WORKDIR /opt/workspace
+CMD /opt/autobuild/autobuild.pl /opt/workspace/config.xml
