@@ -42,6 +42,7 @@ COPY ACE_TAO /opt/ACE_TAO
 COPY config.h ${ACE_ROOT}/ace/config.h
 COPY platform_macros.GNU ${ACE_ROOT}/include/makeinclude/platform_macros.GNU
 COPY default.features ${ACE_ROOT}/bin/MakeProjectCreator/config/default.features
+COPY remoting.jar /opt/remoting.jar
 
 RUN ${ACE_ROOT}/bin/mwc.pl -type gnuace ${TAO_ROOT}/TAO_ACE.mwc && \
     cd ${TAO_ROOT} && \
