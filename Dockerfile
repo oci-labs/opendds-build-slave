@@ -31,8 +31,6 @@ ENV WIRESHARK_SRC=/opt/wireshark-1.12.13 \
     ACE_ROOT=/opt/ACE_TAO/ACE \
     TAO_ROOT=/opt/ACE_TAO/TAO \
     LD_LIBRARY_PATH=/opt/ACE_TAO/ACE/lib \
-    DDS_ROOT=/opt/OpenDDS \
-    LD_LIBRARY_PATH=${ACE_ROOT}/lib:${DDS_ROOT}/lib \
     QTDIR=/usr \
     QT4_INCDIR=/usr/include/qt4
 
