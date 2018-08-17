@@ -14,6 +14,8 @@ RUN apt-get update && apt-get -y --fix-missing install \
     libqt4-dev \
     libqt4-dev-bin \
     libxerces-c-dev \
+    libssl-dev \
+    cmake \
     make \
     openjdk-8-jdk-headless \
     pkg-config \
