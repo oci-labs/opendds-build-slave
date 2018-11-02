@@ -9,13 +9,12 @@ RUN apt-get update && apt-get -y --fix-missing install \
     libxerces-c-dev \
     libssl-dev \
     make \
-    openjdk-8-jdk-headless \
+    openjdk-8-jdk-headless
 
-ENV \
-    MPC_ROOT=/opt/MPC \
+ENV MPC_ROOT=/opt/MPC \
     ACE_ROOT=/opt/ACE_TAO/ACE \
     TAO_ROOT=/opt/ACE_TAO/TAO \
-    LD_LIBRARY_PATH=/opt/ACE_TAO/ACE/lib \
+    LD_LIBRARY_PATH=/opt/ACE_TAO/ACE/lib
 
 COPY autobuild /opt/autobuild
 COPY MPC ${MPC_ROOT}
