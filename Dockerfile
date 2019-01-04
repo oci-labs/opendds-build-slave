@@ -5,11 +5,15 @@ RUN apt-get update && apt-get -y --fix-missing install \
     curl \
     g++ \
     git \
+    gnupg \
     libfindbin-libs-perl \
     libxerces-c-dev \
     libssl-dev \
     make \
     openjdk-8-jdk-headless
+
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
+    apt-get install -y --no-install-recommends nodejs=10.15.0-1nodesource1
 
 ENV MPC_ROOT=/opt/MPC \
     ACE_ROOT=/opt/ACE_TAO/ACE \
