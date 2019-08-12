@@ -1,5 +1,5 @@
 # Image for build GitHub Pull Requests for OpenDDS
-FROM debian
+FROM debian:stretch
 
 RUN apt-get update && apt-get -y --fix-missing install \
     curl \
