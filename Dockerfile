@@ -26,7 +26,7 @@ COPY ACE_TAO /opt/ACE_TAO
 COPY config.h ${ACE_ROOT}/ace/config.h
 COPY platform_macros.GNU ${ACE_ROOT}/include/makeinclude/platform_macros.GNU
 COPY default.features ${ACE_ROOT}/bin/MakeProjectCreator/config/default.features
-COPY slave.jar /opt/jenkins/slave.jar
+COPY agent.jar /opt/jenkins/agent.jar
 COPY run.sh /opt/jenkins/run.sh
 
 RUN ${ACE_ROOT}/bin/mwc.pl -type gnuace ${TAO_ROOT}/TAO_ACE.mwc && \

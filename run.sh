@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 env
 java -version
-java -jar /opt/jenkins/slave.jar -jnlpUrl "${JENKINS_URL}computer/${JENKINS_NAME}/slave-agent.jnlp" -secret "$JENKINS_SECRET"
+java -cp /opt/jenkins/agent.jar hudson.remoting.jnlp.Main -headless -workDir "${JENKINS_AGENT_WORKDIR}" -direct "${DIRECT}" -protocols JNLP4-connect -instanceIdentity "${INSTANCE_IDENTITY}" "${JENKINS_SECRET}" "${JENKINS_NAME}"
